@@ -29,13 +29,19 @@ jobs:
         pip install buildozer[all]
         pip install kivy
 
+    - name: Install Android SDK and AIDL
+      run: |
+        sudo apt install -y android-sdk
+        sdkmanager "platform-tools" "platforms;android-29" "build-tools;29.0.3" "cmdline-tools;latest"
+        sdkmanager --install "tools" "build-tools;30.0.3" "platform-tools" "platforms;android-30"
+
     - name: Build APK
       run: |
         buildozer init
         buildozer android debug
         
     - name: Upload APK
-      uses: actions/upload-artifact@v3  # Updated to v3
+      uses: actions/upload-artifact@v3  # Make sure it's using v3
       with:
         name: app-release.apk
         path: bin/*.apk
