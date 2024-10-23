@@ -22,7 +22,13 @@ jobs:
       run: |
         pip install buildozer
         pip install kivy
-        pip install cython  # Add this line to install Cython
+        pip install cython
+
+    - name: Accept Android SDK licenses
+      run: |
+        yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses
+        $ANDROID_HOME/tools/bin/sdkmanager "platforms;android-28"
+        yes | $ANDROID_HOME/tools/bin/sdkmanager "build-tools;27.0.3"
 
     - name: Build APK
       run: |
