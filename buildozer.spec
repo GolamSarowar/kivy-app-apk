@@ -24,9 +24,6 @@ orientation = portrait
 # (list) Permissions
 android.permissions = INTERNET
 
-# (str) Package domain (com.example.myapp)
-package.name = mykivyapp
-
 # (str) Full name of the main file in the source directory
 source.main_file = main.py
 
