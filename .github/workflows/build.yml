@@ -41,8 +41,7 @@ jobs:
       run: |
         yes | $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
         $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager "platform-tools" "build-tools;30.0.3" "platforms;android-30"
-        $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;29.0.3" "platforms;android-29" "cmdline-tools;latest"
-        $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager "extras;android;m2repository" "extras;google;m2repository"
+        $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;29.0.3" "platforms;android-29"
 
     - name: Set ANDROID_HOME
       run: |
