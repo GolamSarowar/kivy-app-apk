@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout repository
       uses: actions/checkout@v2
@@ -40,15 +40,23 @@ jobs:
     - name: Install Android SDK and AIDL
       run: |
         yes | $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
-        $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-29" "build-tools;29.0.3"
-        
+        $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager "platform-tools" "build-tools;30.0.3" "platforms;android-30"
+        $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;29.0.3" "platforms;android-29" "cmdline-tools;latest"
+        $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager "extras;android;m2repository" "extras;google;m2repository"
+
+    - name: Set ANDROID_HOME
+      run: |
+        echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
+        echo "ANDROID_SDK_ROOT=$HOME/android-sdk" >> $GITHUB_ENV
+        echo "PATH=$PATH:$HOME/android-sdk/platform-tools:$HOME/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_ENV
+
     - name: Build APK
       run: |
         buildozer init
         buildozer android debug
-        
+
     - name: Upload APK
-      uses: actions/upload-artifact@v3  # Make sure it's using v3
+      uses: actions/upload-artifact@v3
       with:
         name: app-release.apk
         path: bin/*.apk
