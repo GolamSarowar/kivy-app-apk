@@ -29,12 +29,19 @@ jobs:
         pip install buildozer[all]
         pip install kivy
 
+    - name: Download Android Command Line Tools
+      run: |
+        mkdir -p $HOME/android-sdk/cmdline-tools
+        wget https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip
+        unzip commandlinetools-linux-8512546_latest.zip -d $HOME/android-sdk/cmdline-tools
+        mv $HOME/android-sdk/cmdline-tools/cmdline-tools $HOME/android-sdk/cmdline-tools/latest
+        rm commandlinetools-linux-8512546_latest.zip
+
     - name: Install Android SDK and AIDL
       run: |
-        sudo apt install -y android-sdk
-        sdkmanager "platform-tools" "platforms;android-29" "build-tools;29.0.3" "cmdline-tools;latest"
-        sdkmanager --install "tools" "build-tools;30.0.3" "platform-tools" "platforms;android-30"
-
+        yes | $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+        $HOME/android-sdk/cmdline-tools/latest/bin/sdkmanager "platform-tools" "platforms;android-29" "build-tools;29.0.3"
+        
     - name: Build APK
       run: |
         buildozer init
