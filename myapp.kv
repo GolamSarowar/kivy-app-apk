@@ -1,0 +1,31 @@
+BoxLayout:
+    orientation: 'vertical'
+    padding: 20
+    spacing: 20
+
+    Label:
+        text: "Select Information"
+        font_size: 24
+
+    Spinner:
+        id: info_spinner
+        text: "Select an option"
+        values: ["Symptoms", "Medication", "Consultation"]
+        size_hint: (1, None)
+        height: 50
+
+    Button:
+        text: "Show"
+        size_hint: (1, None)
+        height: 50
+        on_press: app.root.show_info()
+
+    Label:
+        id: display_label
+        text: ""
+        font_size: 18
+        size_hint: (1, None)
+        height: 50
+        valign: 'top'
+        halign: 'center'
+        text_size: self.width, None
