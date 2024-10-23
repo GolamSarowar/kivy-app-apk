@@ -22,9 +22,8 @@ jobs:
       run: |
         pip install buildozer
         pip install kivy
+        pip install cython  # Add this line to install Cython
 
     - name: Build APK
       run: |
-        # Remove or comment out the line below
-        # buildozer init
         buildozer android debug
