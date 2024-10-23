@@ -35,7 +35,7 @@ jobs:
         buildozer android debug
         
     - name: Upload APK
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3  # Updated to v3
       with:
         name: app-release.apk
         path: bin/*.apk
