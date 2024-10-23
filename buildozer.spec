@@ -9,6 +9,9 @@ package.name = mykivyapp
 # (str) Package domain (needed for .apk)
 package.domain = org.example
 
+# (str) Application version
+version = 0.1
+
 # (str) Source code where the main.py file is located
 source.include_exts = py,png,jpg,kv,atlas
 
